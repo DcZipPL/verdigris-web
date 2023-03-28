@@ -2,6 +2,16 @@ use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
 
+use verdigris_ui::components::display::alert::*;
+use verdigris_ui::components::display::badge::*;
+use verdigris_ui::components::display::card::*;
+use verdigris_ui::components::input::button::*;
+use verdigris_ui::components::layout::grid::*;
+use verdigris_ui::components::layout::flex::*;
+use verdigris_ui::components::layout::space::*;
+use verdigris_ui::components::typography::*;
+use verdigris_ui::components::{Padding, Size, Variant};
+
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
@@ -36,7 +46,66 @@ fn HomePage(cx: Scope) -> impl IntoView {
     let on_click = move |_| set_count.update(|count| *count += 1);
 
     view! { cx,
-        <h1>"Welcome to Leptos!"</h1>
-        <button on:click=on_click>"Click Me: " {count}</button>
+        <h1>"Verdigris UI"</h1>
+        <h2>"Grid"</h2>
+        <Grid>
+            <div class="preview-background">
+                <div class=Padding::Large.to_string()>
+                    <h2>"Card"</h2>
+                    <Card padding=Padding::Medium>
+                        <p>"This is a card"</p>
+                    </Card>
+                    <Space height=Size::Medium/>
+                    <Card padding=Padding::Medium hover_tilt=true>
+                        <p>"This is a card has "<Code>"hover-tilt"</Code>" attribute"</p>
+                    </Card>
+                    <Space height=Size::Medium/>
+                    <Card padding=Padding::Medium border=true>
+                        <p>"This is a card with border"</p>
+                    </Card>
+                </div>
+            </div>
+            <div>
+                <h2>"Alert"</h2>
+                <Alert variant=Variant::Light title="Bummer!">
+                    <p>"This is an alert!"</p>
+                </Alert>
+            </div>
+            <div>
+                <h2>"Button"</h2>
+                <Button variant=Variant::Filled>"Filled Button"</Button><Space width=Size::Medium/>
+                <Button variant=Variant::Outline>"Outline Button"</Button><Space width=Size::Medium/>
+                <Button variant=Variant::Light>"Light Button"</Button><Space width=Size::Medium/>
+                <Button variant=Variant::Subtle>"Subtle Button"</Button><Space width=Size::Medium/>
+            </div>
+            <div>
+                <h2>"Badge"</h2>
+                <Badge variant=BadgeVariant::Filled>"Filled"</Badge><Space width=Size::Medium/>
+                <Badge variant=BadgeVariant::Outline>"Outline"</Badge><Space width=Size::Medium/>
+                <Badge variant=BadgeVariant::Light>"Light"</Badge><Space width=Size::Medium/>
+                <Badge variant=BadgeVariant::Dot>"Dot"</Badge><Space width=Size::Medium/>
+            </div>
+            <Flex>
+                <h2>"Flex"</h2>
+                <Space width=Size::Medium/>
+                "A container"
+            </Flex>
+            <div>
+                <h2>"Typography"</h2>
+                <h1>"Heading 1"</h1>
+                <h2>"Heading 2"</h2>
+                <h3>"Heading 3"</h3>
+                <h4>"Heading 4"</h4>
+                <h5>"Heading 5"</h5>
+                <h6>"Heading 6"</h6>
+                <p>"Paragraph"</p>
+                <Mark>"Mark"</Mark>
+                <Space height=Size::Medium/>
+                <Code>"Code"</Code>
+                <Space height=Size::Medium/>
+                "This "<Mark color=HighlightColor::Purple>"is example"</Mark>" "<Mark>"text"</Mark>" with "<Mark color=HighlightColor::Blue>"markings"</Mark>" and custom "<Code color=HighlightColor::Orange>"inline code block"</Code>""
+            </div>
+        </Grid>
+        <Button on:click=on_click variant=Variant::Filled>"Click Me: " {count}</Button>
     }
 }
