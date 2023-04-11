@@ -8,15 +8,17 @@ use leptos_router::*;
 use verdigris_ui::components::{
     display::{alert::*, badge::*, card::*},
     input::{button::*, icon_button::*},
-    layout::{grid::*, flex::*, space::*, stack::*, group::*, Direction, Justify, Align, Wrap, Position},
+    layout::{grid::*, flex::*, space::*, stack::*, group::*, group::*, Direction, Justify, Align, Wrap, Position},
     misc::pattern::*,
     misc::shell::*,
     typography::*,
     Size,
     Variant,
 };
-use leptos_icons::cg::CgSoftwareDownload;
-use leptos_icons::cg::CgSoftwareDownloadProps;
+use leptos_icons::Icon;
+use leptos_icons::CgIcon;
+use leptos_icons::LeptosIcon;
+use leptos_icons::LeptosIconProps;
 use verdigris_ui::theme::HighlightColor;
 
 #[component]
@@ -77,12 +79,11 @@ fn ComponentsPage(cx: Scope) -> impl IntoView {
             <Group position=Position::Left>"Verdigris UI"</Group>
             <Group position=Position::Left gap=Size::Medium>
                 <Button variant=Variant::Outline>"See examples"</Button>
-                <IconButton><CgSoftwareDownload width="18" height="18"/></IconButton>
+                <IconButton><LeptosIcon icon=Icon::Cg(CgIcon::CgSoftwareDownload) width="18" height="18"/></IconButton>
             </Group>
         </HeaderBar>
         <h1>"Verdigris UI"</h1>
         <h2>"Grid"</h2>
-        <Button variant=Variant::Filled>"With icon"</Button>
         <Grid>
             <div class="preview-background">
                 <div style="padding:1rem;">
@@ -123,9 +124,29 @@ fn ComponentsPage(cx: Scope) -> impl IntoView {
                 <Button variant=Variant::Subtle compact=true>"Subtle Button"</Button><Space width=Size::Medium/>
                 <Button variant=Variant::Gradient(Color::from_str("#3eafa8").unwrap(), Color::from_str("#4bd5cc").unwrap(), 60) compact=true>"Gradient Button"</Button><Space width=Size::Medium/>
                 <br/><Space height=Size::Medium/><br/>
-                <Button>
-                    "Filled Button"
-                </Button>
+                <Group>
+                    <Button variant=Variant::Filled>
+                        <ButtonLeft>
+                            <LeptosIcon icon=Icon::Cg(CgIcon::CgSoftwareDownload) width="18" height="18"/>
+                        </ButtonLeft>
+                        "With Icon (Left)"
+                    </Button>
+                    <Button variant=Variant::Outline>
+                        <ButtonRight>
+                            <LeptosIcon icon=Icon::Cg(CgIcon::CgSoftwareDownload) width="18" height="18"/>
+                        </ButtonRight>
+                        "With Icon (Right)"
+                    </Button>
+                    <Button variant=Variant::Light>
+                        <ButtonLeft>
+                            <LeptosIcon icon=Icon::Cg(CgIcon::CgSoftwareDownload) width="18" height="18"/>
+                        </ButtonLeft>
+                        <ButtonRight>
+                            <LeptosIcon icon=Icon::Cg(CgIcon::CgSoftwareDownload) width="18" height="18"/>
+                        </ButtonRight>
+                        "With Icon (Both)"
+                    </Button>
+                </Group>
             </div>
             <div>
                 <h2>"Badge"</h2>
@@ -158,7 +179,7 @@ fn ComponentsPage(cx: Scope) -> impl IntoView {
                 "This "<Mark color=HighlightColor::Purple>"is example"</Mark>" "<Mark>"text"</Mark>" with "<Mark color=HighlightColor::Blue>"markings"</Mark>" and custom "<Code color=HighlightColor::Orange>"inline code block"</Code>""
             </div>
         </Grid>
-        <Button on:click=on_click variant=Variant::Filled>"Click Me: " {count}</Button>
+        <Button on_click=on_click variant=Variant::Filled>"Click Me: " {count}</Button>
     }
 }
 
@@ -169,7 +190,7 @@ fn StartPage(cx: Scope) -> impl IntoView {
             <Group position=Position::Left>"Verdigris UI"</Group>
             <Group position=Position::Left gap=Size::Medium>
                 <Button variant=Variant::Outline>"See examples"</Button>
-                <IconButton><CgSoftwareDownload width="18" height="18"/></IconButton>
+                <IconButton><LeptosIcon icon=Icon::Cg(CgIcon::CgSoftwareDownload) width="18" height="18"/></IconButton>
             </Group>
         </HeaderBar>
         <div style="text-align: left;">

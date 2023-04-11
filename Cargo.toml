@@ -11,10 +11,10 @@ axum = { version = "0.6.12", optional = true }
 console_error_panic_hook = "0.1.7"
 console_log = "1"
 cfg-if = "1"
-leptos = { version = "0.2.4", default-features = false, features = ["serde"] }
-leptos_axum = { version = "0.2.4", optional = true }
-leptos_meta = { version = "0.2.4", default-features = false }
-leptos_router = { version = "0.2.4", default-features = false }
+leptos = { version = "0.2.5", default-features = false, features = ["serde", "tracing"] }
+leptos_axum = { version = "0.2.5", optional = true }
+leptos_meta = { version = "0.2.5", default-features = false }
+leptos_router = { version = "0.2.5", default-features = false }
 log = "0.4.17"
 simple_logger = "4.1.0"
 tokio = { version = "1.26.0", optional = true }
@@ -22,22 +22,23 @@ tower = { version = "0.4.13", optional = true }
 tower-http = { version = "0.4.0", features = ["fs"], optional = true }
 wasm-bindgen = "0.2.84"
 thiserror = "1.0.40"
-tracing = { version = "0.1.37", optional = true }
 http = "0.2.9"
 verdigris-ui = { path = "../verdigris-ui" }
+getrandom = { version = "0.2.8", features = ["js"] }
+color-art = "0.2.3"
+leptos-icons = { git = "https://github.com/Carlosted/leptos-icons.git", features = ["CgSoftwareDownload"], default_features = false, rev = "862063fb677b0605d15073a51f5dae057b469d91" }
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
 ssr = [
-    "dep:axum", 
-    "dep:tokio", 
-    "dep:tower", 
-    "dep:tower-http", 
-    "dep:leptos_axum", 
-    "leptos/ssr", 
-    "leptos_meta/ssr", 
-    "leptos_router/ssr", 
-    "dep:tracing"
+    "dep:axum",
+    "dep:tokio",
+    "dep:tower",
+    "dep:tower-http",
+    "dep:leptos_axum",
+    "leptos/ssr",
+    "leptos_meta/ssr",
+    "leptos_router/ssr"
 ]
 
 [package.metadata.cargo-all-features]
